@@ -12,5 +12,9 @@ public class MainDemo {
         System.out.println("Minimum element of array is " + arrayDemo.minimumValue());
         System.out.println("Maximum element of array is " + arrayDemo.maximumValue());
 
+        System.out.print("Array after sorting by Bubble Sort (from min to max): ");
+        arrayDemo.bubbleSortToMax();
+        arrayDemo.arrayPrint();
+
     }
 }
