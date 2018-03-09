@@ -5,7 +5,7 @@ import java.util.Random;
 //Class for working with arrays.
 public class OwnArrays {
 
-    private int[] array;
+    int[] array;
 
     //Creation of random int array with definite length.
     OwnArrays(int length){
@@ -18,8 +18,8 @@ public class OwnArrays {
     }
 
     //Array output to console.
-    public void arrayPrint() {
-        for (int x : array) {
+    public void arrayPrint(int [] arrayForPrint) {
+        for (int x : arrayForPrint) {
             System.out.print(x + "  ");
         }
         System.out.println();
@@ -48,21 +48,22 @@ public class OwnArrays {
     }
 
     //Realization of bubble sort.
-
     public int[] bubbleSortToMax(){
+
+        int[] arrayForBubble = array.clone();
         int temp;
 
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < (array.length - 1); j++) {
-                if (array[j] > array[j + 1]) {
-                    temp = array[j + 1];
-                    array[j + 1] = array[j];
-                    array[j] = temp;
+        for (int i = 0; i < arrayForBubble.length; i++) {
+            for (int j = 0; j < (arrayForBubble.length - 1); j++) {
+                if (arrayForBubble[j] > arrayForBubble[j + 1]) {
+                    temp = arrayForBubble[j + 1];
+                    arrayForBubble[j + 1] = arrayForBubble[j];
+                    arrayForBubble[j] = temp;
                 }
             }
         }
 
-        return array;
+        return arrayForBubble;
     }
 
 }
