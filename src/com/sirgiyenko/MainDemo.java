@@ -30,12 +30,18 @@ public class MainDemo {
         //Bubble sort.
         System.out.print("\nArray after sorting by Bubble Sort (from min to max): ");
         start = System.nanoTime();
-        int [] arrayAfterBubble = arrayDemo.bubbleSortToMax();
+        int [] arrayAfterBubble = arrayDemo.bubbleSortToMax(arrayDemo.array.clone());
         finish = System.nanoTime();
         arrayDemo.arrayPrint(arrayAfterBubble);
         System.out.println("Time for Bubble Sort method working in nanoseconds - " + (finish - start));
 
-
+        //Quick sort.
+        System.out.print("\nArray after sorting by Quick Sort  (from min to max): ");
+        start = System.nanoTime();
+        int [] arrayAfterSort = arrayDemo.quickSortToMax(arrayDemo.array.clone(), 0, (arrayDemo.array.clone().length-1));
+        finish = System.nanoTime();
+        arrayDemo.arrayPrint(arrayAfterSort);
+        System.out.println("Time for Quick Sort method working in nanoseconds - " + (finish - start));
 
     }
 }
