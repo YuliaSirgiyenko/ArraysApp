@@ -58,16 +58,16 @@ public class OwnArrays {
     //Binary search in sorted array.
     public int binarySearch(int[] array, int searchedElement, int left, int right) {
         int searchedIndex = -1;
-        int baseElement = array[(right + left)/2];
 
-        if (searchedElement == baseElement) {
-            searchedIndex = (right + left)/2;
-        } else if (searchedElement < baseElement) {
-            int newRight = (right + left)/2 - 1;
-            searchedIndex = binarySearch(array, searchedElement, left, newRight);
-        } else if (searchedElement > baseElement) {
-            int newLeft = (right + left)/2 + 1;
-            searchedIndex = binarySearch(array, searchedElement, newLeft, right);
+        if (searchedElement >= array[left] & searchedElement <= array[right]) {
+            int baseElement = array[(right + left) / 2];
+            if (searchedElement == baseElement) {
+                searchedIndex = (right + left) / 2;
+            } else if (searchedElement < baseElement) {
+                searchedIndex = binarySearch(array, searchedElement, left, (right + left) / 2 - 1);
+            } else if (searchedElement > baseElement) {
+                searchedIndex = binarySearch(array, searchedElement, (right + left) / 2 + 1, right);
+            }
         }
 
         return searchedIndex;

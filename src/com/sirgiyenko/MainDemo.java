@@ -29,9 +29,13 @@ public class MainDemo {
         OwnArrays arrayDemoSorted = new OwnArrays(10, 5);
         System.out.print("\nNew SORTED array for demonstration of binary search: ");
         arrayDemoSorted.arrayPrint(arrayDemoSorted.array);
-        int searchedElement = 35;
-        System.out.println("Index of searched element of array (beginning from 0) " + searchedElement + " is: "
-                + arrayDemoSorted.binarySearch(arrayDemoSorted.array, searchedElement, 0, arrayDemoSorted.array.length-1));
+        int searchedElement = 6;
+        int searchedIndex = arrayDemoSorted.binarySearch(arrayDemoSorted.array, searchedElement, 0, arrayDemoSorted.array.length-1);
+        if (searchedIndex == -1) {
+            System.out.println("Element " + searchedElement + " isn't founded in array.");
+        } else {
+            System.out.println("Index of searched element of array (counting from zero) " + searchedElement + " is: " + searchedIndex);
+        }
 
         /*Demo - sort methods for array sorting with calculation of time for each method working with
         * the same array*/
