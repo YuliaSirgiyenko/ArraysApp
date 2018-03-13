@@ -10,7 +10,7 @@ public class MainDemo {
 
         //Demo - creation of new random int array and its printing to console.
         OwnArrays arrayDemo = new OwnArrays(20);
-        System.out.print("New array for check of methods working is: ");
+        System.out.print("New random array for search of min/max elements: ");
         arrayDemo.arrayPrint(arrayDemo.array);
 
         //Demo - searching of min and max elements of array.
@@ -24,11 +24,22 @@ public class MainDemo {
                 "Result is "); RecursionFunctions.printByRecursion(10);
         System.out.println();
 
+        /*Demo - creation of new definite sorted int array, its printing to console and
+        * demonstration of binary search. */
+        OwnArrays arrayDemoSorted = new OwnArrays(10, 5);
+        System.out.print("\nNew SORTED array for demonstration of binary search: ");
+        arrayDemoSorted.arrayPrint(arrayDemoSorted.array);
+        int searchedElement = 35;
+        System.out.println("Index of searched element of array (beginning from 0) " + searchedElement + " is: "
+                + arrayDemoSorted.binarySearch(arrayDemoSorted.array, searchedElement, 0, arrayDemoSorted.array.length-1));
+
         /*Demo - sort methods for array sorting with calculation of time for each method working with
-        the same array*/
+        * the same array*/
+        System.out.print("\nRepeated print of random array for sort methods check: ");
+        arrayDemo.arrayPrint(arrayDemo.array);
 
         //Bubble sort.
-        System.out.print("\nArray after sorting by Bubble Sort (from min to max): ");
+        System.out.print("\nArray after sorting by Bubble Sort  (from min to max): ");
         start = System.nanoTime();
         int [] arrayAfterBubble = arrayDemo.bubbleSortToMax(arrayDemo.array.clone());
         finish = System.nanoTime();
@@ -36,12 +47,13 @@ public class MainDemo {
         System.out.println("Time for Bubble Sort method working in nanoseconds - " + (finish - start));
 
         //Quick sort.
-        System.out.print("\nArray after sorting by Quick Sort  (from min to max): ");
+        System.out.print("\nArray after sorting by Quick Sort   (from min to max): ");
         start = System.nanoTime();
-        int [] arrayAfterSort = arrayDemo.quickSortToMax(arrayDemo.array.clone(), 0, (arrayDemo.array.clone().length-1));
+        int [] arrayAfterQuick = arrayDemo.quickSortToMax(arrayDemo.array.clone(), 0, (arrayDemo.array.clone().length-1));
         finish = System.nanoTime();
-        arrayDemo.arrayPrint(arrayAfterSort);
+        arrayDemo.arrayPrint(arrayAfterQuick);
         System.out.println("Time for Quick Sort method working in nanoseconds - " + (finish - start));
+
 
     }
 }

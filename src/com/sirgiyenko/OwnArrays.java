@@ -17,6 +17,14 @@ public class OwnArrays {
         }
     }
 
+    //Creation of sorted int array with definite length.
+    OwnArrays(int length, int multiplication){
+        array = new int [length];
+        for (int i = 0; i < length; i++) {
+            array[i] = i * multiplication;
+        }
+    }
+
     //Array output to console.
     public void arrayPrint(int [] arrayForPrint) {
         for (int x : arrayForPrint) {
@@ -45,6 +53,24 @@ public class OwnArrays {
             }
         }
         return min;
+    }
+
+    //Binary search in sorted array.
+    public int binarySearch(int[] array, int searchedElement, int left, int right) {
+        int searchedIndex = -1;
+        int baseElement = array[(right + left)/2];
+
+        if (searchedElement == baseElement) {
+            searchedIndex = (right + left)/2;
+        } else if (searchedElement < baseElement) {
+            int newRight = (right + left)/2 - 1;
+            searchedIndex = binarySearch(array, searchedElement, left, newRight);
+        } else if (searchedElement > baseElement) {
+            int newLeft = (right + left)/2 + 1;
+            searchedIndex = binarySearch(array, searchedElement, newLeft, right);
+        }
+
+        return searchedIndex;
     }
 
     //Realization of bubble sort.
@@ -144,6 +170,7 @@ public class OwnArrays {
 
         return array;
     }
+
 
 
 }
