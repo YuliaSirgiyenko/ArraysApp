@@ -13,7 +13,7 @@ public class OwnArrays {
         Random rand = new Random();
 
         for (int i = 0; i < length; i++) {
-            array[i] = rand.nextInt(200);
+            array[i] = rand.nextInt(99);
         }
     }
 
@@ -171,6 +171,95 @@ public class OwnArrays {
         return array;
     }
 
+    //Realization of merge sort.
+    public int[] mergeSortToMax(int[] array, int n){
 
+        //Calculation of step for dividing (actually equal to actually sorted parts of array).
+        int step = (n == 0) ? 1 : (n*2);
+
+        /*Creation of 2 small arrays left and right. Sorted parts of initial array will be placed to left & right
+        * for further merging.*/
+        int leftAr[] = new int[step];
+        int rightAr[] = new int[step];
+        int i = 0, temp;
+
+        while (i < array.length) {
+
+            //Indexes for leftAr and rightAr respectively.
+            int left = 0, right = 0;
+            //Saving of current position of initial array. It will be used for re-filling of initial array by sorted values.
+            int iStart = i;
+
+            /*Dividing of array by 2 small arrays for further merge step-by-step. Step for dividing
+             * is number of actually sorted positions of initial array (input parameter for method).*/
+
+            /*Filling of left array. If there are enough elements for full left array, it will be filled fully.
+            * In other case it will be filled partly.*/
+            if ((i + step) < array.length) {
+                for (int j = i; j < (i + step); j++) {
+                    leftAr[left] = array[j];
+                    left++;
+                }
+            } else {
+                temp = array.length - i;
+                for (int j = i; j < (i + temp); j++) {
+                    leftAr[left] = array[j];
+                    left++;
+                }
+            }
+            i += step;
+
+            /*Filling of right array in the same way.*/
+            if ((i + step) < array.length) {
+                for (int j = i; j < (i + step); j++) {
+                    rightAr[right] = array[j];
+                    right++;
+                }
+            } else if (i < array.length) {
+                temp = array.length - i;
+                for (int j = i; j < (i + temp); j++) {
+                    rightAr[right] = array[j];
+                    right++;
+                }
+            }
+            i += step;
+
+            /*Merging. At the beginning may be:
+             * - 2 full arrays: left and right -> merging is needed;
+             * - full left array and empty right -> left array is sorted, no needs in merging;
+             * - partly filled left array and empty right -> left array is sorted, no needs in merging;
+             * - full left array and partly filled right -> merging is needed.
+             * Actual number of elements in each array known from indexes left & right.*/
+
+            if (right != 0) {
+                int leftCounter = 0, rightCounter = 0;
+
+                while ((leftCounter < left) || (rightCounter < right)) {
+
+                    if (leftCounter == left) {
+                        array[iStart] = rightAr[rightCounter];
+                        rightCounter++;
+                    } else if (rightCounter == right) {
+                        array[iStart] = leftAr[leftCounter];
+                        leftCounter++;
+                    } else if (rightAr[rightCounter] <= leftAr[leftCounter]) {
+                        array[iStart] = rightAr[rightCounter];
+                        rightCounter++;
+                    } else if (leftAr[leftCounter] < rightAr[rightCounter]) {
+                        array[iStart] = leftAr[leftCounter];
+                        leftCounter++;
+                    }
+                    iStart++;
+                }
+            }
+
+        }
+
+        if (step * 2 < array.length) {
+            mergeSortToMax(array, step);
+        }
+
+        return array;
+    }
 
 }

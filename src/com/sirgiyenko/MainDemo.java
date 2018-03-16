@@ -9,7 +9,7 @@ public class MainDemo {
         long start, finish;
 
         //Demo - creation of new random int array and its printing to console.
-        OwnArrays arrayDemo = new OwnArrays(20);
+        OwnArrays arrayDemo = new OwnArrays(24);
         System.out.print("New random array for search of min/max elements: ");
         arrayDemo.arrayPrint(arrayDemo.array);
 
@@ -58,6 +58,13 @@ public class MainDemo {
         arrayDemo.arrayPrint(arrayAfterQuick);
         System.out.println("Time for Quick Sort method working in nanoseconds - " + (finish - start));
 
+        //Merge sort.
+        System.out.print("\nArray after sorting by Merge Sort   (from min to max): ");
+        start = System.nanoTime();
+        int [] arrayAfterMerge = arrayDemo.mergeSortToMax(arrayDemo.array.clone(), 0);
+        finish = System.nanoTime();
+        arrayDemo.arrayPrint(arrayAfterMerge);
+        System.out.println("Time for Merge Sort method working in nanoseconds - " + (finish - start));
 
     }
 }
